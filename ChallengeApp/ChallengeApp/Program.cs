@@ -1,21 +1,18 @@
-﻿int myAge = 30;
-int newAge = myAge + 1;
-int myInt = int.MaxValue;
-uint myUint = uint.MaxValue;
-long myLong = long.MaxValue;
-ulong myUlong = ulong.MaxValue;
+﻿var number1 = 50;
+var number2 = 10;
 
-float myFloat = float.MaxValue;
-double myDouble = double.MaxValue;
-decimal myDecimal = decimal.MaxValue;
+var name = "Greg";
+var age = 37;
 
-string firstName = "Greg";
-string lastName = "Zet";
-string result = firstName + lastName + myAge;
-Console.WriteLine(result);
-char myChar = 'm';
-var result2 = firstName.ToArray();
-
-bool isActive = true;
-isActive = false;
-var isValid = 5 > 6;
+if (name == "Liz" || age < 30)
+{
+    Console.WriteLine("My name is Liz or age under 30.");
+}
+else if (name == "Greg" && age <= 40)
+{
+    Console.WriteLine("My name is Greg and age equal or under 40.");
+}
+else
+{
+    Console.WriteLine("Someone older than 40.");
+}
