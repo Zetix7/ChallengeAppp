@@ -1,18 +1,24 @@
-﻿var number1 = 50;
-var number2 = 10;
+﻿var name = "Greg";
+var gender = "male";
+var age = 33;
 
-var name = "Greg";
-var age = 37;
-
-if (name == "Liz" || age < 30)
+if (gender == "female" && age < 30)
 {
-    Console.WriteLine("My name is Liz or age under 30.");
+    Console.WriteLine("Female under 30 yo.");
 }
-else if (name == "Greg" && age <= 40)
+else if(name == "Eva" && age == 33)
 {
-    Console.WriteLine("My name is Greg and age equal or under 40.");
+    Console.WriteLine("Eva, age 33.");
+}
+else if(gender == "male" && age < 18)
+{
+    Console.WriteLine("Male under 18 yo.");
+}
+else if(name == "Greg" && !(gender == "female") && age > 30)
+{
+    Console.WriteLine("Greg, male, over 30 yo.");
 }
 else
 {
-    Console.WriteLine("Someone older than 40.");
+    Console.WriteLine("Someone else.");
 }
