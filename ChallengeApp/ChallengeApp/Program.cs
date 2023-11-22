@@ -1,9 +1,13 @@
-﻿int[] grades = new int[365];
-string[] daysOfWeek = new string[7];
-daysOfWeek = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-Console.WriteLine(daysOfWeek[0]);
+﻿List<string> daysOfWeek = new List<string>();
+daysOfWeek.Add("Monday");
+daysOfWeek.Add("Tuesday");
+daysOfWeek.Add("Wednesday");
+daysOfWeek.Add("Thursday");
+daysOfWeek.Add("Friday");
+daysOfWeek.Add("Saturday");
+daysOfWeek.Add("Sunday");
 
-for (int i = 0; i < daysOfWeek.Length; i++)
+foreach(var day in daysOfWeek)
 {
-    Console.WriteLine(daysOfWeek[i]);
+    Console.WriteLine(day);
 }
