@@ -1,24 +1,10 @@
-﻿long number = 98010245678;
+﻿using ChallengeApp;
 
-string numberInString = number.ToString();
-int[] digitsInNumber = new int[10] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-foreach (var digit in numberInString)
-{
-    if (digit == '0') { digitsInNumber[0]++; }
-    else if (digit == '1') { digitsInNumber[1]++; }
-    else if (digit == '2') { digitsInNumber[2]++; }
-    else if (digit == '3') { digitsInNumber[3]++; }
-    else if (digit == '4') { digitsInNumber[4]++; }
-    else if (digit == '5') { digitsInNumber[5]++; }
-    else if (digit == '6') { digitsInNumber[6]++; }
-    else if (digit == '7') { digitsInNumber[7]++; }
-    else if (digit == '8') { digitsInNumber[8]++; }
-    else if (digit == '9') { digitsInNumber[9]++; }
-}
+var user1 = new User("Greg", "passwordGreg");
+var user2 = new User("Liz", "passwordLiz");
+var user3 = new User("Natalie", "passwordNatalie");
 
-Console.WriteLine("Result for count: " + number);
-
-for (var i = 0; i < digitsInNumber.Length; i++)
-{
-    Console.WriteLine(i + " => " + digitsInNumber[i]);
-}
+user1.AddScore(2);
+user1.AddScore(5);
+var result = user1.Result;
+Console.WriteLine(result);
