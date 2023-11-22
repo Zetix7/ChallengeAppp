@@ -1,24 +1,9 @@
-﻿var name = "Greg";
-var gender = "male";
-var age = 33;
+﻿int[] grades = new int[365];
+string[] daysOfWeek = new string[7];
+daysOfWeek = new string[] { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+Console.WriteLine(daysOfWeek[0]);
 
-if (gender == "female" && age < 30)
+for (int i = 0; i < daysOfWeek.Length; i++)
 {
-    Console.WriteLine("Female under 30 yo.");
-}
-else if(name == "Eva" && age == 33)
-{
-    Console.WriteLine("Eva, age 33.");
-}
-else if(gender == "male" && age < 18)
-{
-    Console.WriteLine("Male under 18 yo.");
-}
-else if(name == "Greg" && !(gender == "female") && age > 30)
-{
-    Console.WriteLine("Greg, male, over 30 yo.");
-}
-else
-{
-    Console.WriteLine("Someone else.");
+    Console.WriteLine(daysOfWeek[i]);
 }
