@@ -3,7 +3,8 @@
 public class Employee
 {
     private int _age;
-    private List<int> _grades = new();
+    private List<int> _positiveGrades = new() { 0 };
+    private List<int> _negativeGrades = new() { 0 };
 
     public Employee(string firstName, string lastName, int age)
     {
@@ -11,6 +12,7 @@ public class Employee
         LastName = lastName;
         _age = age;
     }
+
     public string FirstName { get; }
     public string LastName { get; }
 
@@ -18,12 +20,19 @@ public class Employee
     {
         get
         {
-            return _grades.Sum();
+            return _positiveGrades.Sum() + _negativeGrades.Sum();
         }
     }
 
     public void AddGrade(int grade)
     {
-        _grades.Add(grade);
+        if (grade > 0)
+        {
+            _positiveGrades.Add(grade);
+        }
+        else
+        {
+            _negativeGrades.Add(grade);
+        }
     }
 }
