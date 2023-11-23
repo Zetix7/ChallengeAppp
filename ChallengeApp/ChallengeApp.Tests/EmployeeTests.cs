@@ -3,7 +3,7 @@
 public class EmployeeTests
 {
     [Test]
-    public void CheckAddPositivePoints()
+    public void Add3PositivePointsAndReturnPositiveResult()
     {
         var employee = new Employee("Greg", "Zet", 30);
         employee.AddGrade(4);
@@ -16,7 +16,7 @@ public class EmployeeTests
     }
 
     [Test]
-    public void CheckAddNegativePoints()
+    public void Add3NegativePointsAndReturnNegativeResult()
     {
         var employee = new Employee("Greg", "Zet", 30);
         employee.AddGrade(-4);
@@ -29,7 +29,7 @@ public class EmployeeTests
     }
 
     [Test]
-    public void CheckAddEveryPoints()
+    public void Add3DifferentPointsAndReturnNegativeResult()
     {
         var employee = new Employee("Greg", "Zet", 30);
         employee.AddGrade(4);
