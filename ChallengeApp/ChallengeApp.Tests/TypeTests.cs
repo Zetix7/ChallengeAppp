@@ -32,23 +32,23 @@ public class TypeTests
     [Test]
     public void Check2UsersAndReturnSameObjects()
     {
-        var user1 = GetUser("Greg", "Psafasd");
-        var user2 = user1;
+        var employee1 = GetEmployee("Greg", "Zet");
+        var employee2 = employee1;
 
-        Assert.AreEqual(user1, user2);
+        Assert.AreEqual(employee1, employee2);
     }
 
     [Test]
     public void Check2UsersAndReturn2DifferentObjects()
     {
-        var user1 = GetUser("Greg", "Psafasd");
-        var user2 = GetUser("Greg", "Psafasd");
+        var employee1 = GetEmployee("Greg", "Zet");
+        var employee2 = GetEmployee("Greg", "Zet");
 
-        Assert.AreNotEqual(user1, user2);
+        Assert.AreNotEqual(employee1, employee2);
     }
 
-    private User GetUser(string login, string password)
+    private Employee GetEmployee(string firstName, string lastName)
     {
-        return new User(login, password);
+        return new Employee(firstName, lastName);
     }
 }

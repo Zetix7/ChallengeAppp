@@ -2,37 +2,65 @@
 
 public class Employee
 {
-    private int _age;
-    private List<int> _positiveGrades = new() { 0 };
-    private List<int> _negativeGrades = new() { 0 };
+    private List<float> _grades = new();
 
-    public Employee(string firstName, string lastName, int age)
+    public Employee(string firstName, string lastName)
     {
         FirstName = firstName;
         LastName = lastName;
-        _age = age;
     }
 
     public string FirstName { get; }
     public string LastName { get; }
 
-    public int Result
+    public void AddGrade(float grade)
     {
-        get
+        if (grade >= 0 && grade <= 100)
         {
-            return _positiveGrades.Sum() + _negativeGrades.Sum();
-        }
-    }
-
-    public void AddGrade(int grade)
-    {
-        if (grade > 0)
-        {
-            _positiveGrades.Add(grade);
+            _grades.Add(grade);
         }
         else
         {
-            _negativeGrades.Add(grade);
+            Console.WriteLine($"ERROR: Invalid value '{grade}'! Float must be from 0 to 100.");
         }
+    }
+
+    public void AddGrade(string grade)
+    {
+        if (double.TryParse(grade, out double doubleResult))
+        {
+            AddGrade(doubleResult);
+        }
+        else if(float.TryParse(grade, out float floatResult))
+        {
+            AddGrade(floatResult);
+        }
+        else 
+        {
+            Console.WriteLine($"ERROR: Invalid value '{grade}'! String is not double or float.");
+        }
+    }
+
+    public void AddGrade(double grade)
+    {
+        var floatValue = (float)grade;
+        AddGrade(floatValue);
+    }
+
+    public Statistics GetStatistics()
+    {
+        var statistics = new Statistics();
+        statistics.Average = 0;
+        statistics.Max = 0;
+        statistics.Min = 100;
+
+        foreach (var grade in _grades)
+        {
+            statistics.Max = Math.Max(statistics.Max, grade);
+            statistics.Min = Math.Min(statistics.Min, grade);
+            statistics.Average += grade;
+        }
+        statistics.Average /= _grades.Count;
+        return statistics;
     }
 }
