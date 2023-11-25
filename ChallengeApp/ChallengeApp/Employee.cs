@@ -56,18 +56,17 @@ public class Employee
         statistics.Max = 0;
         statistics.Min = 100;
 
-        var index = 0;
-        while (index < _grades.Count)
+        foreach (var grade in _grades)
         {
-            if (_grades[index] == 7)
+            if (grade == 7)
             {
-                break;
+                Console.WriteLine("Number 7 is always skip and does not part of this statistic.");
+                continue;
             }
 
-            statistics.Max = Math.Max(statistics.Max, _grades[index]);
-            statistics.Min = Math.Min(statistics.Min, _grades[index]);
-            statistics.Average += _grades[index];
-            index++;
+            statistics.Max = Math.Max(statistics.Max, grade);
+            statistics.Min = Math.Min(statistics.Min, grade);
+            statistics.Average += grade;
         }
 
         statistics.Average /= _grades.Count;
