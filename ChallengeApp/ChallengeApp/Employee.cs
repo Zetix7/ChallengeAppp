@@ -57,20 +57,13 @@ public class Employee
         statistics.Min = 100;
 
         var index = 0;
-        do
+        while (index < _grades.Count)
         {
             statistics.Max = Math.Max(statistics.Max, _grades[index]);
             statistics.Min = Math.Min(statistics.Min, _grades[index]);
             statistics.Average += _grades[index];
             index++;
-        } while (index< _grades.Count);
-
-        //foreach (var grade in _grades)
-        //{
-        //    statistics.Max = Math.Max(statistics.Max, grade);
-        //    statistics.Min = Math.Min(statistics.Min, grade);
-        //    statistics.Average += grade;
-        //}
+        }
 
         statistics.Average /= _grades.Count;
         return statistics;
