@@ -60,15 +60,15 @@ public class Employee
         {
             if (grade == 7)
             {
-                Console.WriteLine("Number 7 is always skip and does not part of this statistic.");
-                continue;
+                Console.WriteLine("Number 7 is breaking loop.");
+                goto here;
             }
 
             statistics.Max = Math.Max(statistics.Max, grade);
             statistics.Min = Math.Min(statistics.Min, grade);
             statistics.Average += grade;
         }
-
+        here:
         statistics.Average /= _grades.Count;
         return statistics;
     }
