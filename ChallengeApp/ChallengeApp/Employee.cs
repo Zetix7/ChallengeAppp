@@ -33,11 +33,11 @@ public class Employee
         {
             AddGrade(doubleResult);
         }
-        else if(float.TryParse(grade, out float floatResult))
+        else if (float.TryParse(grade, out float floatResult))
         {
             AddGrade(floatResult);
         }
-        else 
+        else
         {
             Console.WriteLine($"ERROR: Invalid value '{grade}'! String is not double or float.");
         }
@@ -59,6 +59,11 @@ public class Employee
         var index = 0;
         while (index < _grades.Count)
         {
+            if (_grades[index] == 7)
+            {
+                break;
+            }
+
             statistics.Max = Math.Max(statistics.Max, _grades[index]);
             statistics.Min = Math.Min(statistics.Min, _grades[index]);
             statistics.Average += _grades[index];
