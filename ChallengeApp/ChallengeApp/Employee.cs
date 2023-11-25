@@ -1,4 +1,6 @@
-﻿namespace ChallengeApp;
+﻿using System.Diagnostics;
+
+namespace ChallengeApp;
 
 public class Employee
 {
@@ -54,12 +56,22 @@ public class Employee
         statistics.Max = 0;
         statistics.Min = 100;
 
-        foreach (var grade in _grades)
+        var index = 0;
+        do
         {
-            statistics.Max = Math.Max(statistics.Max, grade);
-            statistics.Min = Math.Min(statistics.Min, grade);
-            statistics.Average += grade;
-        }
+            statistics.Max = Math.Max(statistics.Max, _grades[index]);
+            statistics.Min = Math.Min(statistics.Min, _grades[index]);
+            statistics.Average += _grades[index];
+            index++;
+        } while (index< _grades.Count);
+
+        //foreach (var grade in _grades)
+        //{
+        //    statistics.Max = Math.Max(statistics.Max, grade);
+        //    statistics.Min = Math.Min(statistics.Min, grade);
+        //    statistics.Average += grade;
+        //}
+
         statistics.Average /= _grades.Count;
         return statistics;
     }
