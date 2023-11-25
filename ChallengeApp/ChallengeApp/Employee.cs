@@ -58,17 +58,69 @@ public class Employee
 
         foreach (var grade in _grades)
         {
-            if (grade == 7)
-            {
-                Console.WriteLine("Number 7 is breaking loop.");
-                goto here;
-            }
-
             statistics.Max = Math.Max(statistics.Max, grade);
             statistics.Min = Math.Min(statistics.Min, grade);
             statistics.Average += grade;
         }
-        here:
+        
+        statistics.Average /= _grades.Count;
+        return statistics;
+    }
+
+    public Statistics GetStatisticsWithFor()
+    {
+        var statistics = new Statistics();
+        statistics.Average = 0;
+        statistics.Max = 0;
+        statistics.Min = 100;
+
+        for(var i = 0; i < _grades.Count; i++)
+        {
+            statistics.Average += _grades[i];
+            statistics.Max = Math.Max(statistics.Max, _grades[i]);
+            statistics.Min = Math.Min(statistics.Min, _grades[i]);
+        }
+
+        statistics.Average /= _grades.Count;
+        return statistics;
+    }
+
+    public Statistics GetStatisticsWithDoWhile()
+    {
+        var statistics = new Statistics();
+        statistics.Average = 0;
+        statistics.Max = 0;
+        statistics.Min = 100;
+
+        var index = 0;
+        do
+        {
+            statistics.Average += _grades[index];
+            statistics.Max = Math.Max(statistics.Max, _grades[index]);
+            statistics.Min = Math.Min(statistics.Min, _grades[index]);
+            index++;
+        } while (index < _grades.Count);
+
+        statistics.Average /= _grades.Count;
+        return statistics;
+    }
+
+    public Statistics GetStatisticsWithWhile()
+    {
+        var statistics = new Statistics();
+        statistics.Average = 0;
+        statistics.Max = 0;
+        statistics.Min = 100;
+
+        var index = 0;
+        while (index < _grades.Count)
+        {
+            statistics.Average += _grades[index];
+            statistics.Max = Math.Max(statistics.Max, _grades[index]);
+            statistics.Min = Math.Min(statistics.Min, _grades[index]);
+            index++;
+        } 
+
         statistics.Average /= _grades.Count;
         return statistics;
     }
