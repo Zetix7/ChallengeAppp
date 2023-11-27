@@ -21,7 +21,7 @@ public class Employee
         }
         else
         {
-            Console.WriteLine($"ERROR: Invalid value '{grade}'! Float must be from 0 to 100.");
+            throw new Exception($"ERROR: Invalid value '{grade}'! Float must be from 0 to 100.");
         }
     }
 
@@ -35,9 +35,13 @@ public class Employee
         {
             AddGrade(floatResult);
         }
+        else if (grade.Length == 1)
+        {
+            AddGrade(grade[0]);
+        }
         else
         {
-            Console.WriteLine($"ERROR: Invalid value '{grade}'! String is not double or float.");
+            throw new Exception($"ERROR: Invalid value '{grade}'! String is not float.");
         }
     }
 
@@ -67,8 +71,7 @@ public class Employee
                 _grades.Add(20);
                 break;
             default:
-                Console.WriteLine("ERROR: Wrong grade! Input grade from 'a' to 'e'.");
-                break;
+                throw new Exception("ERROR: Wrong grade! Input grade from 'a' to 'e'.");
         }
     }
 

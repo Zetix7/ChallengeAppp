@@ -5,20 +5,6 @@ Console.WriteLine();
 
 var employee = new Employee("Greg", "Zet");
 
-try
-{
-    Employee e = null;
-    var firstName = e.FirstName; 
-}
-catch (NullReferenceException nre)
-{
-    Console.WriteLine(nre.Message);
-}
-finally
-{
-    Console.WriteLine("Finally here");
-}
-
 do
 {
     Console.WriteLine("Insert next grade of employee: ");
@@ -28,7 +14,15 @@ do
     {
         break;
     }
-    employee.AddGrade(input);
+
+    try
+    {
+        employee.AddGrade(input);
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine(e.Message);
+    }
 } while (true);
 
 var statistics = employee.GetStatistics();
