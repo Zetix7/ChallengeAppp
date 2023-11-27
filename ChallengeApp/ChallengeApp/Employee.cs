@@ -49,6 +49,31 @@ public class Employee
         AddGrade(floatValue);
     }
 
+    public void AddGrade(char grade)
+    {
+        switch (grade)
+        {
+            case 'a' or 'A':
+                _grades.Add(100);
+                break;
+            case 'b' or 'B':
+                _grades.Add(80);
+                break;
+            case 'c' or 'C':
+                _grades.Add(60);
+                break;
+            case 'd' or 'D':
+                _grades.Add(40);
+                break;
+            case 'e' or 'E':
+                _grades.Add(20);
+                break;
+            default:
+                Console.WriteLine("ERROR: Wrong grade! Input grade from 'a' to 'e'.");
+                break;
+        }
+    }
+
     public Statistics GetStatistics()
     {
         var statistics = new Statistics();
@@ -63,64 +88,6 @@ public class Employee
             statistics.Average += grade;
         }
         
-        statistics.Average /= _grades.Count;
-        return statistics;
-    }
-
-    public Statistics GetStatisticsWithFor()
-    {
-        var statistics = new Statistics();
-        statistics.Average = 0;
-        statistics.Max = 0;
-        statistics.Min = 100;
-
-        for(var i = 0; i < _grades.Count; i++)
-        {
-            statistics.Average += _grades[i];
-            statistics.Max = Math.Max(statistics.Max, _grades[i]);
-            statistics.Min = Math.Min(statistics.Min, _grades[i]);
-        }
-
-        statistics.Average /= _grades.Count;
-        return statistics;
-    }
-
-    public Statistics GetStatisticsWithDoWhile()
-    {
-        var statistics = new Statistics();
-        statistics.Average = 0;
-        statistics.Max = 0;
-        statistics.Min = 100;
-
-        var index = 0;
-        do
-        {
-            statistics.Average += _grades[index];
-            statistics.Max = Math.Max(statistics.Max, _grades[index]);
-            statistics.Min = Math.Min(statistics.Min, _grades[index]);
-            index++;
-        } while (index < _grades.Count);
-
-        statistics.Average /= _grades.Count;
-        return statistics;
-    }
-
-    public Statistics GetStatisticsWithWhile()
-    {
-        var statistics = new Statistics();
-        statistics.Average = 0;
-        statistics.Max = 0;
-        statistics.Min = 100;
-
-        var index = 0;
-        while (index < _grades.Count)
-        {
-            statistics.Average += _grades[index];
-            statistics.Max = Math.Max(statistics.Max, _grades[index]);
-            statistics.Min = Math.Min(statistics.Min, _grades[index]);
-            index++;
-        } 
-
         statistics.Average /= _grades.Count;
         return statistics;
     }
