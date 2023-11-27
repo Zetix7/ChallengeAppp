@@ -2,7 +2,7 @@
 
 public class Employee
 {
-    private List<float> _grades = new();
+    private readonly List<float> _grades = new();
 
     public Employee(string firstName, string lastName)
     {
