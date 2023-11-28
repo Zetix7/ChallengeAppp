@@ -1,22 +1,16 @@
 ﻿namespace ChallengeApp;
 
-public class Employee : Person, IEmployee
+public class Employee : IEmployee
 {
     private readonly List<float> _grades = new();
 
-    public Employee() : this("NoFirstName")
+    public Employee(string firstName, string lastName)
     {
-    }
-
-    public Employee(string firstName) : this(firstName, "NoLastName")
-    {
-    }
-
-    public Employee(string firstName, string lastName) : base(firstName)
-    {
+        FirstName = firstName;
         LastName = lastName;
     }
 
+    public string FirstName { get; }
     public string LastName { get; }
 
     public void AddGrade(float grade)
@@ -33,7 +27,11 @@ public class Employee : Person, IEmployee
 
     public void AddGrade(string grade)
     {
-        if (double.TryParse(grade, out double doubleResult))
+        if (int.TryParse(grade, out int intGrade))
+        {
+            AddGrade(intGrade);
+        }
+        else if (double.TryParse(grade, out double doubleResult))
         {
             AddGrade(doubleResult);
         }
@@ -49,6 +47,12 @@ public class Employee : Person, IEmployee
         {
             throw new Exception($"ERROR: Invalid value '{grade}'! String is not float.");
         }
+    }
+
+    public void AddGrade(int grade)
+    {
+        var floatGrade = grade;
+        AddGrade(floatGrade);
     }
 
     public void AddGrade(double grade)
@@ -87,6 +91,7 @@ public class Employee : Person, IEmployee
         statistics.Average = 0;
         statistics.Max = 0;
         statistics.Min = 100;
+        statistics.AverageLetter = 'X';
 
         foreach (var grade in _grades)
         {
