@@ -1,6 +1,6 @@
 ﻿namespace ChallengeApp;
 
-public class Employee : Person
+public class Employee : Person, IEmployee
 {
     private readonly List<float> _grades = new();
 
