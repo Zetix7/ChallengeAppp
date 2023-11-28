@@ -4,6 +4,14 @@ public class Employee : Person
 {
     private readonly List<float> _grades = new();
 
+    public Employee() : this("NoFirstName")
+    {
+    }
+
+    public Employee(string firstName) : this(firstName, "NoLastName")
+    {
+    }
+
     public Employee(string firstName, string lastName) : base(firstName)
     {
         LastName = lastName;
