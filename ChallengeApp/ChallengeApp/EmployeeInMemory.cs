@@ -2,28 +2,12 @@
 
 public class EmployeeInMemory : EmployeeBase
 {
-    public delegate void WriteMessage(string message);
+    public event GradeAddedDelegate GradeAdded;
+ 
     private readonly List<float> _grades = new();
 
     public EmployeeInMemory(string firstName, string lastName) : base(firstName, lastName)
     {
-        WriteMessage d = WriteMessageToLowerCase;
-        d += WriteMessageToUpperCase;
-        d($"{firstName} {lastName}");
-        Console.WriteLine($"{firstName} {lastName}");
-
-        d -= WriteMessageToLowerCase;
-        d("TesT of TesTs");
-    }
-
-    private void WriteMessageToLowerCase(string message)
-    {
-        Console.WriteLine(message.ToLower());
-    }
-
-    private void WriteMessageToUpperCase(string message)
-    {
-        Console.WriteLine(message.ToUpper());
     }
 
     public override void AddGrade(float grade)
@@ -31,6 +15,10 @@ public class EmployeeInMemory : EmployeeBase
         if (grade >= 0 && grade <= 100)
         {
             _grades.Add(grade);
+            if(GradeAdded != null)
+            {
+                GradeAdded(this, new EventArgs());
+            }
         }
         else
         {
@@ -64,7 +52,7 @@ public class EmployeeInMemory : EmployeeBase
 
     public override void AddGrade(int grade)
     {
-        var floatGrade = grade;
+        var floatGrade = (float)grade;
         AddGrade(floatGrade);
     }
 
@@ -79,19 +67,19 @@ public class EmployeeInMemory : EmployeeBase
         switch (grade)
         {
             case 'a' or 'A':
-                _grades.Add(100);
+                AddGrade(100);
                 break;
             case 'b' or 'B':
-                _grades.Add(80);
+                AddGrade(80);
                 break;
             case 'c' or 'C':
-                _grades.Add(60);
+                AddGrade(60);
                 break;
             case 'd' or 'D':
-                _grades.Add(40);
+                AddGrade(40);
                 break;
             case 'e' or 'E':
-                _grades.Add(20);
+                AddGrade(20);
                 break;
             default:
                 throw new Exception("ERROR: Wrong grade! Input grade from 'a' to 'e'.");

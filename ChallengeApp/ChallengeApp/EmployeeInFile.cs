@@ -2,6 +2,7 @@
 
 public class EmployeeInFile : EmployeeBase
 {
+    public event GradeAddedDelegate GradeAdded;
     private const string FILENAME = "grades.txt";
 
     public EmployeeInFile(string firstName, string lastName) : base(firstName, lastName)
@@ -15,6 +16,10 @@ public class EmployeeInFile : EmployeeBase
             using (var writer = File.AppendText(FILENAME))
             {
                 writer.WriteLine(Math.Round(grade, 2));
+                if (GradeAdded != null)
+                {
+                    GradeAdded(this, new EventArgs());
+                }
             }
         }
         else
