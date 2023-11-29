@@ -9,9 +9,11 @@ public class EmployeeInMemory : EmployeeBase
     {
         WriteMessage d = WriteMessageToLowerCase;
         d += WriteMessageToUpperCase;
-        d -= WriteMessageToLowerCase;
         d($"{firstName} {lastName}");
         Console.WriteLine($"{firstName} {lastName}");
+
+        d -= WriteMessageToLowerCase;
+        d("TesT of TesTs");
     }
 
     private void WriteMessageToLowerCase(string message)
