@@ -2,13 +2,18 @@
 
 public class EmployeeInFile : EmployeeBase
 {
+    private const string FILENAME = "grades.txt";
+
     public EmployeeInFile(string firstName, string lastName) : base(firstName, lastName)
     {
     }
 
     public override void AddGrade(float grade)
     {
-        throw new NotImplementedException();
+        using(var writer = File.AppendText(FILENAME))
+        {
+            writer.WriteLine(grade);
+        }
     }
 
     public override void AddGrade(string grade)
