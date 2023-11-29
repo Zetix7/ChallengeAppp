@@ -4,7 +4,7 @@ Console.WriteLine("Welcome in XYZ program to rate employees");
 Console.WriteLine();
 
 var employee = new EmployeeInFile("Greg", "Zet");
-employee.AddGrade(7.7f);
+
 do
 {
     Console.WriteLine("Insert next grade of employee: ");

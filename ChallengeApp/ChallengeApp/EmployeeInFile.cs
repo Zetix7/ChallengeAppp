@@ -10,36 +10,88 @@ public class EmployeeInFile : EmployeeBase
 
     public override void AddGrade(float grade)
     {
-        using (var writer = File.AppendText(FILENAME))
+        if (grade >= 0 && grade <= 100)
         {
-            writer.WriteLine(grade);
+            using (var writer = File.AppendText(FILENAME))
+            {
+                writer.WriteLine(Math.Round(grade, 2));
+            }
+        }
+        else
+        {
+            throw new Exception($"ERROR: Invalid value '{grade}'! Float must be from 0 to 100.");
         }
     }
 
     public override void AddGrade(string grade)
     {
-        throw new NotImplementedException();
+        if (int.TryParse(grade, out int intNumber))
+        {
+            AddGrade(intNumber);
+        }
+        else if (double.TryParse(grade, out double doubleNumber))
+        {
+            AddGrade(doubleNumber);
+        }
+        else if (float.TryParse(grade, out float floatNumber))
+        {
+            AddGrade(floatNumber);
+        }
+        else if (grade.Length == 1)
+        {
+            AddGrade(grade[0]);
+        }
+        else
+        {
+            throw new Exception($"ERROR: Invalid value '{grade}'! String is not float.");
+        }
     }
 
     public override void AddGrade(double grade)
     {
-        throw new NotImplementedException();
+        var floatNumber = (float)grade;
+        AddGrade(floatNumber);
     }
 
     public override void AddGrade(char grade)
     {
-        throw new NotImplementedException();
+        switch (grade)
+        {
+            case 'a' or 'A':
+                AddGrade(100);
+                break;
+            case 'b' or 'B':
+                AddGrade(80);
+                break;
+            case 'c' or 'C':
+                AddGrade(60);
+                break;
+            case 'd' or 'D':
+                AddGrade(40);
+                break;
+            case 'e' or 'E':
+                AddGrade(20);
+                break;
+            default:
+                throw new Exception($"ERROR: Invalid value '{grade}'! Input grade from 'a' to 'e'.");
+        }
     }
 
     public override void AddGrade(int grade)
     {
-        throw new NotImplementedException();
+        var floatNumber = (float)grade;
+        AddGrade(floatNumber);
     }
 
     public override Statistics GetStatistics()
     {
         var statistics = new Statistics();
+        statistics.Min = 100;
+        statistics.Max = 0;
+        statistics.Average = 0;
+        statistics.AverageLetter = 'X';
         var counter = 0;
+        
         if (File.Exists(FILENAME))
         {
             using (var reader = File.OpenText(FILENAME))
