@@ -5,29 +5,29 @@ Console.WriteLine();
 
 var employee = new EmployeeInFile("Greg", "Zet");
 employee.AddGrade(7.7f);
-//do
-//{
-//    Console.WriteLine("Insert next grade of employee: ");
-//    var input = Console.ReadLine();
+do
+{
+    Console.WriteLine("Insert next grade of employee: ");
+    var input = Console.ReadLine();
 
-//    if (input == "q" || input == "Q")
-//    {
-//        break;
-//    }
+    if (input == "q" || input == "Q")
+    {
+        break;
+    }
 
-//    try
-//    {
-//        employee.AddGrade(input);
-//    }
-//    catch (Exception e)
-//    {
-//        Console.WriteLine(e.Message);
-//    }
-//} while (true);
+    try
+    {
+        employee.AddGrade(input);
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine(e.Message);
+    }
+} while (true);
 
-//var statistics = employee.GetStatistics();
+var statistics = employee.GetStatistics();
 
-//Console.WriteLine($"Min: {statistics.Min}");
-//Console.WriteLine($"Max: {statistics.Max}");
-//Console.WriteLine($"Average: {statistics.Average:N2}");
-//Console.WriteLine($"AverageLetter: {statistics.AverageLetter}");
+Console.WriteLine($"Min: {statistics.Min}");
+Console.WriteLine($"Max: {statistics.Max}");
+Console.WriteLine($"Average: {statistics.Average:N2}");
+Console.WriteLine($"AverageLetter: {statistics.AverageLetter}");
