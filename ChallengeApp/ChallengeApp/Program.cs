@@ -3,7 +3,7 @@
 Console.WriteLine("Welcome in XYZ program to rate employees");
 Console.WriteLine();
 
-var employee = new EmployeeInFile("Greg", "Zet");
+var employee = new EmployeeInMemory("Greg", "Zet");
 
 do
 {

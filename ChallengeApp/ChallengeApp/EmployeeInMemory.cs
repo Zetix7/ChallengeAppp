@@ -2,10 +2,26 @@
 
 public class EmployeeInMemory : EmployeeBase
 {
+    public delegate void WriteMessage(string message);
     private readonly List<float> _grades = new();
 
     public EmployeeInMemory(string firstName, string lastName) : base(firstName, lastName)
     {
+        WriteMessage d = WriteMessageToLowerCase;
+        d += WriteMessageToUpperCase;
+        d -= WriteMessageToLowerCase;
+        d($"{firstName} {lastName}");
+        Console.WriteLine($"{firstName} {lastName}");
+    }
+
+    private void WriteMessageToLowerCase(string message)
+    {
+        Console.WriteLine(message.ToLower());
+    }
+
+    private void WriteMessageToUpperCase(string message)
+    {
+        Console.WriteLine(message.ToUpper());
     }
 
     public override void AddGrade(float grade)
