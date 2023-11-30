@@ -2,19 +2,19 @@
 
 public class EmployeeInMemory : EmployeeBase
 {
-    public event GradeAddedDelegate GradeAdded;
- 
-    private readonly List<float> _grades = new();
+     private readonly List<float> _grades = new();
 
     public EmployeeInMemory(string firstName, string lastName) : base(firstName, lastName)
     {
     }
 
+    public override event GradeAddedDelegate GradeAdded;
+
     public override void AddGrade(float grade)
     {
         if (grade >= 0 && grade <= 100)
         {
-            _grades.Add(grade);
+            _grades.Add((float)Math.Round(double.Parse(grade.ToString()), 2));
             if(GradeAdded != null)
             {
                 GradeAdded(this, new EventArgs());
@@ -89,10 +89,6 @@ public class EmployeeInMemory : EmployeeBase
     public override Statistics GetStatistics()
     {
         var statistics = new Statistics();
-        statistics.Average = 0;
-        statistics.Max = 0;
-        statistics.Min = 100;
-        statistics.AverageLetter = 'X';
 
         foreach (var grade in _grades)
         {

@@ -1,14 +1,17 @@
-﻿namespace ChallengeApp;
+﻿using System.Diagnostics;
+
+namespace ChallengeApp;
 
 public class EmployeeInFile : EmployeeBase
 {
-    public event GradeAddedDelegate GradeAdded;
     private const string FILENAME = "grades.txt";
 
     public EmployeeInFile(string firstName, string lastName) : base(firstName, lastName)
     {
     }
 
+    public override event GradeAddedDelegate GradeAdded;
+    
     public override void AddGrade(float grade)
     {
         if (grade >= 0 && grade <= 100)
@@ -91,12 +94,8 @@ public class EmployeeInFile : EmployeeBase
     public override Statistics GetStatistics()
     {
         var statistics = new Statistics();
-        statistics.Min = 100;
-        statistics.Max = 0;
-        statistics.Average = 0;
-        statistics.AverageLetter = 'X';
-        var counter = 0;
-        
+        var grades = new List<float>();
+
         if (File.Exists(FILENAME))
         {
             using (var reader = File.OpenText(FILENAME))
@@ -105,15 +104,19 @@ public class EmployeeInFile : EmployeeBase
                 while (line != null)
                 {
                     var grade = float.Parse(line);
-                    statistics.Min = Math.Min(statistics.Min, grade);
-                    statistics.Max = Math.Max(statistics.Max, grade);
-                    statistics.Average += grade;
+                    grades.Add(grade);
                     line = reader.ReadLine();
-                    counter++;
                 }
             }
         }
-        statistics.Average /= counter;
+
+        foreach (var grade in grades)
+        {
+            statistics.Min = Math.Min(statistics.Min, grade);
+            statistics.Max = Math.Max(statistics.Max, grade);
+            statistics.Average += grade;
+        }
+        statistics.Average /= grades.Count;
 
         switch (statistics.Average)
         {

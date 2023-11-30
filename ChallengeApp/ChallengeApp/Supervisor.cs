@@ -1,19 +1,17 @@
-﻿namespace ChallengeApp;
+﻿using static ChallengeApp.EmployeeBase;
 
-public class Supervisor : IEmployee
+namespace ChallengeApp;
+
+public class Supervisor : EmployeeBase
 {
     private readonly List<float> _grades = new();
+    public override event GradeAddedDelegate GradeAdded;
 
-    public Supervisor(string firstName, string lastName)
+    public Supervisor(string firstName, string lastName) : base(firstName, lastName)
     {
-        FirstName = firstName;
-        LastName = lastName;
     }
 
-    public string FirstName { get; }
-    public string LastName { get; }
-
-    public void AddGrade(float grade)
+    public override void AddGrade(float grade)
     {
         if (grade >= 0 && grade <= 100)
         {
@@ -21,7 +19,7 @@ public class Supervisor : IEmployee
         }
     }
 
-    public void AddGrade(string grade)
+    public override void AddGrade(string grade)
     {
         if (grade.Length < 3 && (char.IsDigit(grade[0]) && grade.Length == 1 || (grade.Contains('-') || grade.Contains('+'))))
         {
@@ -104,19 +102,19 @@ public class Supervisor : IEmployee
         }
     }
 
-    public void AddGrade(int grade)
+    public override void AddGrade(int grade)
     {
         var floatGrade = (float)grade;
         AddGrade(floatGrade);
     }
 
-    public void AddGrade(double grade)
+    public override void AddGrade(double grade)
     {
         var floatGrade = (float)grade;
         AddGrade(floatGrade);
     }
 
-    public void AddGrade(char grade)
+    public override void AddGrade(char grade)
     {
         switch (grade)
         {
@@ -140,13 +138,9 @@ public class Supervisor : IEmployee
         }
     }
 
-    public Statistics GetStatistics()
+    public override Statistics GetStatistics()
     {
         var statistics = new Statistics();
-        statistics.Min = 100;
-        statistics.Max = 0;
-        statistics.Average = 0;
-        statistics.AverageLetter = 'X';
 
         foreach (var grade in _grades)
         {

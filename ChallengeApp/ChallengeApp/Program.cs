@@ -42,7 +42,7 @@ do
     }
     else if (choise == "2")
     {
-        var employee = new EmployeeInMemory("Greg", "Zet");
+        var employee = new EmployeeInFile("Greg", "Zet");
         employee.GradeAdded += EmployeeGradeAdded;
         do
         {
