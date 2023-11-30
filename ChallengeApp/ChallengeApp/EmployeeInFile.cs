@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace ChallengeApp;
+﻿namespace ChallengeApp;
 
 public class EmployeeInFile : EmployeeBase
 {
@@ -29,66 +27,6 @@ public class EmployeeInFile : EmployeeBase
         {
             throw new Exception($"ERROR: Invalid value '{grade}'! Float must be from 0 to 100.");
         }
-    }
-
-    public override void AddGrade(string grade)
-    {
-        if (int.TryParse(grade, out int intNumber))
-        {
-            AddGrade(intNumber);
-        }
-        else if (double.TryParse(grade, out double doubleNumber))
-        {
-            AddGrade(doubleNumber);
-        }
-        else if (float.TryParse(grade, out float floatNumber))
-        {
-            AddGrade(floatNumber);
-        }
-        else if (grade.Length == 1)
-        {
-            AddGrade(grade[0]);
-        }
-        else
-        {
-            throw new Exception($"ERROR: Invalid value '{grade}'! String is not float.");
-        }
-    }
-
-    public override void AddGrade(double grade)
-    {
-        var floatNumber = (float)grade;
-        AddGrade(floatNumber);
-    }
-
-    public override void AddGrade(char grade)
-    {
-        switch (grade)
-        {
-            case 'a' or 'A':
-                AddGrade(100);
-                break;
-            case 'b' or 'B':
-                AddGrade(80);
-                break;
-            case 'c' or 'C':
-                AddGrade(60);
-                break;
-            case 'd' or 'D':
-                AddGrade(40);
-                break;
-            case 'e' or 'E':
-                AddGrade(20);
-                break;
-            default:
-                throw new Exception($"ERROR: Invalid value '{grade}'! Input grade from 'a' to 'e'.");
-        }
-    }
-
-    public override void AddGrade(int grade)
-    {
-        var floatNumber = (float)grade;
-        AddGrade(floatNumber);
     }
 
     public override Statistics GetStatistics()

@@ -4,7 +4,7 @@ Console.WriteLine("Welcome in XYZ program to rate employees");
 Console.WriteLine();
 
 Console.Write("Choose saving grades: \n\t1 - to memory, \n\t2 - to file grades.txt \nYour choise: ");
-var choise = Console.ReadLine();
+var choise = Console.ReadLine()?.Trim();
 do
 {
 
@@ -14,8 +14,8 @@ do
         employee.GradeAdded += EmployeeGradeAdded;
         do
         {
-            Console.WriteLine("Insert next grade of employee: ");
-            var input = Console.ReadLine();
+            Console.WriteLine("Insert to memory next grade of employee: ");
+            var input = Console.ReadLine()?.Trim();
 
             if (input == "q" || input == "Q")
             {
@@ -46,8 +46,8 @@ do
         employee.GradeAdded += EmployeeGradeAdded;
         do
         {
-            Console.WriteLine("Insert next grade of employee: ");
-            var input = Console.ReadLine();
+            Console.WriteLine("Insert to file next grade of employee: ");
+            var input = Console.ReadLine()?.Trim();
 
             if (input == "q" || input == "Q")
             {
@@ -75,7 +75,7 @@ do
     else
     {
         Console.Write("\tChoose 1 - memory or 2 - file. \nYour choise: ");
-        choise = Console.ReadLine();
+        choise = Console.ReadLine()?.Trim();
     }
 } while (choise.Trim() != "1" || choise.Trim() != "2");
 

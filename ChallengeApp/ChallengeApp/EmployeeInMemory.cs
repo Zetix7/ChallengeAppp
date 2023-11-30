@@ -26,66 +26,6 @@ public class EmployeeInMemory : EmployeeBase
         }
     }
 
-    public override void AddGrade(string grade)
-    {
-        if (int.TryParse(grade, out int intGrade))
-        {
-            AddGrade(intGrade);
-        }
-        else if (double.TryParse(grade, out double doubleResult))
-        {
-            AddGrade(doubleResult);
-        }
-        else if (float.TryParse(grade, out float floatResult))
-        {
-            AddGrade(floatResult);
-        }
-        else if (grade.Length == 1)
-        {
-            AddGrade(grade[0]);
-        }
-        else
-        {
-            throw new Exception($"ERROR: Invalid value '{grade}'! String is not float.");
-        }
-    }
-
-    public override void AddGrade(int grade)
-    {
-        var floatGrade = (float)grade;
-        AddGrade(floatGrade);
-    }
-
-    public override void AddGrade(double grade)
-    {
-        var floatValue = (float)grade;
-        AddGrade(floatValue);
-    }
-
-    public override void AddGrade(char grade)
-    {
-        switch (grade)
-        {
-            case 'a' or 'A':
-                AddGrade(100);
-                break;
-            case 'b' or 'B':
-                AddGrade(80);
-                break;
-            case 'c' or 'C':
-                AddGrade(60);
-                break;
-            case 'd' or 'D':
-                AddGrade(40);
-                break;
-            case 'e' or 'E':
-                AddGrade(20);
-                break;
-            default:
-                throw new Exception("ERROR: Wrong grade! Input grade from 'a' to 'e'.");
-        }
-    }
-
     public override Statistics GetStatistics()
     {
         var statistics = new Statistics();
