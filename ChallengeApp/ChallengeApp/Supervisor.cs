@@ -144,31 +144,9 @@ public class Supervisor : EmployeeBase
 
         foreach (var grade in _grades)
         {
-            statistics.Min = Math.Min(statistics.Min, grade);
-            statistics.Max = Math.Max(statistics.Max, grade);
-            statistics.Average += grade;
+            statistics.AddGrade(grade);
         }
 
-        statistics.Average /= _grades.Count;
-
-        switch (statistics.Average)
-        {
-            case var average when average >= 80:
-                statistics.Average = 'A';
-                break;
-            case var average when average >= 60:
-                statistics.Average = 'B';
-                break;
-            case var average when average >= 40:
-                statistics.Average = 'C';
-                break;
-            case var average when average >= 20:
-                statistics.Average = 'D';
-                break;
-            default:
-                statistics.Average = 'E';
-                break;
-        }
         return statistics;
     }
 }
